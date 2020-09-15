@@ -1,0 +1,54 @@
+.match-card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  width: 200px;
+  height: 260px;
+  perspective: 600px;
+}
+
+.match-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.7s;
+  transform-style: preserve-3d;
+}
+
+.match-card-side {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+}
+
+.match-card-side--face {
+  background-color: #eeeeee;
+  color: #000;
+  transform: rotateX(180deg);
+}
+
+.match-card-side--back {
+  font-family: "Arial Black", Gadget, sans-serif;
+  --stripe: #c1c7c9;
+  --bg: #bdbfc0;
+
+  background: linear-gradient(45deg, var(--bg) 25%, transparent 25%) 50px 0,
+    linear-gradient(135deg, var(--bg) 25%, transparent 25%) 0px 0,
+    linear-gradient(315deg, var(--bg) 25%, transparent 25%) 50px 0,
+    linear-gradient(225deg, var(--bg) 25%, transparent 25%) 0px 0;
+
+  background-size: 100px 100px;
+  background-color: var(--stripe);
+}
+
+.center-content-vertically {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.match-card.face-up {
+  transform: rotateX(180deg);
+}
