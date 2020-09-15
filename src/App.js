@@ -4,7 +4,7 @@ import GameBoard from "./components/GameBoard.component";
 import AppConfig from "./config/AppConfig";
 import "./App.css";
 
-function App() {
+function App(props) {
   const matchCardDeck = AppConfig.MatchCardsConfig.matchCardDeck;
   const [cards, setCards] = useState(matchCardDeck.cards.slice(0));
 
