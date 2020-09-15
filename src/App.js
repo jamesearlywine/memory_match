@@ -15,6 +15,9 @@ function App() {
 
   return (
     <div className="App">
+      <header>
+        <h1>Memory Match</h1>
+      </header>
       <div>
         <button onClick={shuffle}>Shuffle Deck</button>
       </div>
