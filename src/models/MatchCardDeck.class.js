@@ -29,4 +29,8 @@ export default class MatchCardDeck {
     this.addCards(this.cards);
     return this;
   }
+
+  static from(objProperties) {
+    return new MatchCardDeck(objProperties);
+  }
 }

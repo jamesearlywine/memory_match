@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import GameBoard from "./components/GameBoard.component";
+import GameBoardComponent from "./components/GameBoard.component";
 
 import AppConfig from "./config/AppConfig";
 import "./App.css";
@@ -21,7 +21,7 @@ function App(props) {
       <div>
         <button onClick={shuffle}>Shuffle Deck</button>
       </div>
-      <GameBoard cards={cards} />
+      <GameBoardComponent cards={cards} />
     </div>
   );
 }

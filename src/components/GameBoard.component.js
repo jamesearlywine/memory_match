@@ -3,7 +3,7 @@ import MatchCardComponent from "./MatchCard.component";
 
 import "./GameBoard.component.css";
 
-const GameBoard = (props) => {
+const GameBoardComponent = (props) => {
   return (
     <div className="game-board">
       {props.cards.map((card) => (
@@ -13,4 +13,4 @@ const GameBoard = (props) => {
   );
 };
 
-export default GameBoard;
+export default GameBoardComponent;
