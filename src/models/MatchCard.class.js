@@ -10,7 +10,7 @@ export default class MatchCard {
   }
 
   getAvatarUrl() {
-    return ENVIRONMENT.baseCardsAvatarUrl + this.avatarImageFilename;
+    return ENVIRONMENT.cardsAvatarBaseUrl + this.avatarImageFilename;
   }
 
   equals(otherMatchCard) {
