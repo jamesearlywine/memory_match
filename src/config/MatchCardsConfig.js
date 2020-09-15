@@ -43,7 +43,7 @@ const matchCardsAvailable = [
 const matchCardDeck = MatchCardDeck.from({
   cards: matchCardsAvailable,
 })
-  .duplicate()
+  .duplicateCards()
   .shuffle();
 
 const MatchCardsConfig = {

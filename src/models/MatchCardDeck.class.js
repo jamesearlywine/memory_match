@@ -25,7 +25,7 @@ export default class MatchCardDeck {
     return this;
   }
 
-  duplicate() {
+  duplicateCards() {
     this.addCards(this.cards);
     return this;
   }
