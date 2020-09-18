@@ -3,7 +3,6 @@ import "./MatchCard.component.css";
 
 const MatchCardComponent = (props) => {
   const onClick = (event) => {
-    if (props.isDisabled) return;
     props.onClickCard(props.matchCard);
   };
 
@@ -11,7 +10,7 @@ const MatchCardComponent = (props) => {
     <div className="match-card-container no-select">
       <div
         className={`match-card clickable
-            ${props.isSelected || props.isCompleted ? "face-up" : null}
+            ${props.isFaceUp ? "face-up" : null}
         `}
         onClick={onClick}
       >

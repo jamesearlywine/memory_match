@@ -11,7 +11,9 @@ const useGameState = () => {
     if (cardsSelected.indexOf(card) !== -1) {
       setCardsSelected(cardsSelected.filter((_card) => _card !== card));
     } else {
-      setCardsSelected(cardsSelected.concat([card]));
+      setCardsSelected(
+        cardsSelected.length > 1 ? [card] : cardsSelected.concat([card])
+      );
     }
   };
 
@@ -20,17 +22,12 @@ const useGameState = () => {
     const secondCard = cardsSelected[1];
 
     if (firstCard && secondCard && firstCard.matches(secondCard)) {
-      setCardsCompleted(cardsCompleted.concat(cardsSelected));
+      setCardsCompleted(cardsCompleted.concat([firstCard, secondCard]));
       setCardsSelected(
-        cardsSelected.filter(
-          (cardSelected) =>
-            cardSelected !== firstCard && cardSelected !== secondCard
-        )
+        cardsSelected.filter((card) => !cardsCompleted.includes(card))
       );
-    } else {
-      if (cardsSelected.length > 1) {
-        setTimeout(() => setCardsSelected([]), 1000);
-      }
+    } else if (cardsSelected.length > 1) {
+      setTimeout(() => setCardsSelected([]), 850);
     }
   }, [cardsSelected, cardsCompleted]);
 
@@ -43,6 +40,7 @@ const GameBoardComponent = (props) => {
   const isBoardDisabled = cardsSelected.length > 1;
 
   const onClickCard = (card) => {
+    if (isBoardDisabled) return;
     setCardSelected(card);
   };
 
@@ -52,6 +50,9 @@ const GameBoardComponent = (props) => {
         <MatchCardComponent
           key={card.id}
           matchCard={card}
+          isFaceUp={
+            cardsSelected.includes(card) || cardsCompleted.includes(card)
+          }
           isSelected={cardsSelected.includes(card)}
           isCompleted={cardsCompleted.includes(card)}
           isDisabled={isBoardDisabled}
