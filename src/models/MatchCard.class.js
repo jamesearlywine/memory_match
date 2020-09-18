@@ -13,7 +13,7 @@ export default class MatchCard {
     return ENVIRONMENT.cardsAvatarBaseUrl + this.avatarImageFilename;
   }
 
-  equals(otherMatchCard) {
+  matches(otherMatchCard) {
     return (
       this.name === otherMatchCard.name &&
       this.avatarImageFilename === otherMatchCard.avatarImageFilename

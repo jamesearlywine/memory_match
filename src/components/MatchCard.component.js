@@ -1,18 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import "./MatchCard.component.css";
 
 const MatchCardComponent = (props) => {
-  const [isFaceUp, setIsFaceUp] = useState(false);
-
   const onClick = (event) => {
-    setIsFaceUp(!isFaceUp);
+    if (props.isDisabled) return;
+    props.onClickCard(props.matchCard);
   };
 
   return (
     <div className="match-card-container no-select">
       <div
         className={`match-card clickable
-            ${isFaceUp ? "face-up" : null}
+            ${props.isSelected || props.isCompleted ? "face-up" : null}
         `}
         onClick={onClick}
       >
