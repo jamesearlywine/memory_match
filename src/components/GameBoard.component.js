@@ -11,9 +11,7 @@ const useGameState = () => {
     if (cardsSelected.indexOf(card) !== -1) {
       setCardsSelected(cardsSelected.filter((_card) => _card !== card));
     } else {
-      setCardsSelected(
-        cardsSelected.length > 1 ? [card] : cardsSelected.concat([card])
-      );
+      setCardsSelected(cardsSelected.concat([card]));
     }
   };
 
