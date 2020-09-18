@@ -7,10 +7,16 @@ import "./App.css";
 function App(props) {
   const matchCardDeck = AppConfig.MatchCardsConfig.matchCardDeck;
   const [cards, setCards] = useState(matchCardDeck.cards.slice(0));
+  const [gameNumber, setGameNumber] = useState(0);
 
   const shuffle = () => {
     matchCardDeck.shuffle();
     setCards(matchCardDeck.cards.slice(0));
+  };
+
+  const newGame = () => {
+    setGameNumber(gameNumber + 1);
+    shuffle();
   };
 
   return (
@@ -19,9 +25,9 @@ function App(props) {
         <h1>Memory Match</h1>
       </header>
       <div>
-        <button onClick={shuffle}>Shuffle Deck</button>
+        <button onClick={newGame}>New Game</button>
       </div>
-      <GameBoardComponent cards={cards} />
+      <GameBoardComponent cards={cards} key={gameNumber} />
     </div>
   );
 }
