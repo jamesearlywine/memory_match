@@ -7,13 +7,13 @@ echo "########################################"
 echo "## Updating Dev Stack for Memory Match "
 echo "########################################"
 echo ""
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+SCRIPT_DIR=$(dirname $(realpath -s $0))
 aws cloudformation deploy --stack-name $STACK_NAME --template-file /$SCRIPT_DIR/cloudformation/dev.yaml
 STACK_INFO=$(aws cloudformation describe-stacks --stack-name $STACK_NAME)
 DEPLOYED_WEB_URL=$(jq -r "(.Stacks[0].Outputs)[] | select(.OutputKey == \"WebsiteURL\") | .OutputValue" <<< $STACK_INFO)
 DEPLOYED_S3_URI=$(jq -r "(.Stacks[0].Outputs)[] | select(.OutputKey == \"S3BucketURI\") | .OutputValue" <<< $STACK_INFO)
 
-echo "Stack Info: $STACK_INFO"
+# echo "Stack Info: $STACK_INFO"
 
 echo ""
 echo "########################################"
