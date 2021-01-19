@@ -1,5 +1,5 @@
-import MatchCard from "../models/MatchCard.class";
-import MatchCardDeck from "../models/MatchCardDeck.class";
+import MatchCard from "../lib/MatchCard.class";
+import MatchCardDeck from "../lib/MatchCardDeck.class";
 
 const matchCardsAvailable = [
   new MatchCard({
