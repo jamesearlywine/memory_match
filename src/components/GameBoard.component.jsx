@@ -6,6 +6,7 @@ import "./GameBoard.component.css";
 const useGameState = () => {
   const [cardsSelected, setCardsSelected] = useState([]);
   const [cardsCompleted, setCardsCompleted] = useState([]);
+  const [incorrectGuessesCount, setIncorrectGuessesCount] = useState(0);
 
   const setCardSelected = (card) => {
     if (cardsSelected.indexOf(card) !== -1) {
@@ -26,14 +27,15 @@ const useGameState = () => {
       );
     } else if (cardsSelected.length > 1) {
       setTimeout(() => setCardsSelected([]), 850);
+      setIncorrectGuessesCount(incorrectGuessesCount + 1);
     }
   }, [cardsSelected, cardsCompleted]);
 
-  return { cardsSelected, cardsCompleted, setCardSelected, setCardsSelected };
+  return { cardsSelected, cardsCompleted, setCardSelected, setCardsSelected, incorrectGuessesCount };
 };
 
 const GameBoardComponent = (props) => {
-  const { cardsSelected, cardsCompleted, setCardSelected } = useGameState();
+  const { cardsSelected, cardsCompleted, setCardSelected, incorrectGuessesCount } = useGameState();
 
   const isBoardDisabled = cardsSelected.length > 1;
 
@@ -42,22 +44,26 @@ const GameBoardComponent = (props) => {
     setCardSelected(card);
   };
 
+  useEffect(() => {
+    props.onIncorrectGuess(incorrectGuessesCount);
+  }, [incorrectGuessesCount])
+
   return (
-    <div className="game-board">
-      {props.cards.map((card) => (
-        <MatchCardComponent
-          key={card.id}
-          matchCard={card}
-          isFaceUp={
-            cardsSelected.includes(card) || cardsCompleted.includes(card)
-          }
-          isSelected={cardsSelected.includes(card)}
-          isCompleted={cardsCompleted.includes(card)}
-          isDisabled={isBoardDisabled}
-          onClickCard={onClickCard}
-        />
-      ))}
-    </div>
+      <div className="game-board">
+        {props.cards.map((card) => (
+          <MatchCardComponent
+            key={card.id}
+            matchCard={card}
+            isFaceUp={
+              cardsSelected.includes(card) || cardsCompleted.includes(card)
+            }
+            isSelected={cardsSelected.includes(card)}
+            isCompleted={cardsCompleted.includes(card)}
+            isDisabled={isBoardDisabled}
+            onClickCard={onClickCard}
+          />
+        ))}
+      </div>
   );
 };
 
